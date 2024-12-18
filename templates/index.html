@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo</title>
+</head>
+<body>
+    <form action="/add" method="post">
+        <div>
+            <label for="title">Todo cím</label>
+            <input type="text" name="title" id="" placeholder="Írd be a hozzávalót...">
+            <br>
+            <button type="submit">Hozzáadás</button>
+        </div>
+    </form>
+
+    {% for todo in todo_list %}
+        <p> {{ todo.id }} | {{ todo.title }} </p>
+
+        {% if todo.complete == False %}
+            <span>Nincsen késsz</span>
+        {% else %}
+            <span>Késsz van</span>
+        {% endif %}
+
+        <a href="/update/{{ todo.id }}">Frissítés</a>
+        <a href="/delete/{{ todo.id }}">Törlés</a>
+
+    {% endfor %}
+</body>
+</html>
